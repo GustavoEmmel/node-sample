@@ -7,7 +7,7 @@ import { IHelloController } from "../interfaces/controllers/hello-controller.int
 export class HelloController implements IHelloController {
 
   @httpGet("/")
-  private sayHello(@request() req: express.Request, @response() res: express.Response) {
+  sayHello(@request() req: express.Request, @response() res: express.Response) {
     console.log(new Date());
     const myPromises = [
       new Promise((resolve) => setTimeout(() => {
