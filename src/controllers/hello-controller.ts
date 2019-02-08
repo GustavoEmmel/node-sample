@@ -8,22 +8,24 @@ export class HelloController implements IHelloController {
 
   @httpGet("/")
   private sayHello(@request() req: express.Request, @response() res: express.Response) {
+    console.log(new Date());
     const myPromises = [
-      new Promise((resolve, reject) => setTimeout(() => {
+      new Promise((resolve) => setTimeout(() => {
         resolve("A (slow)");
       }, 1000)),
 
-      new Promise((resolve, reject) => setTimeout(() => {
+      new Promise((resolve) => setTimeout(() => {
         resolve("B (slower)");
       }, 2000)),
 
-      new Promise((resolve, reject) => setTimeout(() => {
+      new Promise((resolve) => setTimeout(() => {
         resolve("C (fast)");
       }, 10))
     ];
 
     return Promise.all(myPromises)
       .then(results => {
+        console.log(new Date());
         console.log("todas resolvidas");
         const response = results.map(item => {
           console.log(item);
